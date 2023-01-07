@@ -46,5 +46,23 @@ Usage:
 
 # 3) filter_VCF_by_goldstandard.py
 
+This script filters a given VCF file based on the goldstandard VCF. Only variants at a position listed in the goldstandard are kept.
+
+```
+Usage:
+  python filter_VCF_by_goldstandard.py --in <FILE> --gold <FILE> --out <DIR>
+
+  --in    STR    Input VCF file
+  --gold  STR    Goldstandard VCF file
+  --out   STR    Output VCF file
+```
+
+`--in` specifies the input VCF file.
+
+`--gold` specifies a goldstandard VCF file that is used for the filtering.
+
+`--out` specifies the output VCF file.
+
+
 # 4) dAF_selected_contigs.py
 
