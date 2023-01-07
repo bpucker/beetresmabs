@@ -1,12 +1,12 @@
 ### Boas Pucker ###
 ### bpucker@cebitec.uni-bielefeld.de ###
-### v0.25 ###
+### v0.35 ###
 
 __usage__ = """
-					python3 dAF_selected_contigs.py\n
-					--input_vcf <FILENAME>
-					--reference_file <FILENAME>
-					--output_dir <DIRECTORY_NAME>[will be generated if required]
+					python3 dAF_selected_contigs.py
+					--in <FILENAME>
+					--ref <FILENAME>
+					--out <DIRECTORY_NAME>[will be generated if required]
 					--pool1 <sample name in VCF; multiple samples names can be provided comma-seperated>
 					--pool2 <sample name in VCF; multiple samples names can be provided comma-seperated>
 					
@@ -217,21 +217,6 @@ def plot_genome_wide_delta_allele_frequencies( af_frequency_vcf, unique_variant_
 					pass
 			line = f.readline()
 	
-	# # --- load information about unique variants --- #
-	# additional_raw_data_x = []
-	# additional_raw_data_y = []
-	# for  k in chr_names:
-		# additional_raw_data_x.append( [] )
-		# additional_raw_data_y.append( [] )
-	# with open( unique_variant_vcf, "r" ) as f:
-		# line = f.readline()
-		# while line:
-			# if line[0] != '#':
-				# parts = line.strip().split('\t')
-				# additional_raw_data_x[ chr_names.index( parts[0] ) ].append( int( parts[1] ) )
-				# additional_raw_data_y[ chr_names.index( parts[0] ) ].append( abs( float( parts[-1] ) ) )
-			# line = f.readline()
-	
 	# --- prepare normal data (variants detected in both pools) for construction of plot --- #
 	data_to_plot_x = [ ]
 	data_to_plot_y = [ ]
@@ -276,38 +261,6 @@ def plot_genome_wide_delta_allele_frequencies( af_frequency_vcf, unique_variant_
 				af_pool2[ idx ].append( np.median( tmp_y_pool2 ) )
 				start += step_size
 				end += step_size
-	
-	# # --- prepare unique variant data for plot construction --- #
-	# additional_data_to_plot_x = [ ]
-	# additional_data_to_plot_y = [ ]
-	# for k in chr_names:
-		# additional_data_to_plot_x.append( [] )
-		# additional_data_to_plot_y.append( [] )
-	
-	# for idx, chr_data in enumerate( additional_raw_data_x ):
-		# start = 0
-		# end = 0 + window_size
-		
-		# while end < len( chr_data ):			
-			# if start > len( chr_data )-window_size:	#end analysis of this chromosome
-				# try:
-					# tmp_x = chr_data[ start: ]
-					# tmp_y = raw_data_y[ idx ][ start: ] 
-					# additional_data_to_plot_x[ idx ].append( sum( tmp_x ) / ( len( tmp_x ) * 1000000.0 ) )
-					# additional_data_to_plot_y[ idx ].append( len( tmp_y ) / float( tmp_x[-1]-temp_x[0] ) )	#density of unique variant in current interval
-				# except ZeroDivisionError:
-					# additional_data_to_plot_x[ idx ].append( 0 )
-					# additional_data_to_plot_y[ idx ].append( 0 )
-				# break
-				
-			# else:
-				# tmp_x = chr_data[ start:end ]
-				# tmp_y = raw_data_y[ idx ][ start:end ] 
-				# additional_data_to_plot_x[ idx ].append( sum( tmp_x ) / ( len( tmp_x ) * 1000000.0 ) )
-				# additional_data_to_plot_y[ idx ].append( len( tmp_y ) / float( tmp_x[-1]-tmp_x[0] ) )
-				# start += step_size
-				# end += step_size
-	
 	
 	# --- construct single plots --- #
 	for idx, each in enumerate( chr_names ):
@@ -513,9 +466,9 @@ def main( arguments ):
 	"""! @brief run all parts of this script """
 	
 	# ---- collecting all inputs --- #
-	input_vcf = arguments[ arguments.index( '--input_vcf' ) + 1 ]
-	fasta_ref_file = arguments[ arguments.index( '--reference_file' ) + 1 ]
-	output_dir = arguments[ arguments.index( '--output_dir' ) + 1 ]
+	input_vcf = arguments[ arguments.index( '--in' ) + 1 ]
+	fasta_ref_file = arguments[ arguments.index( '--ref' ) + 1 ]
+	output_dir = arguments[ arguments.index( '--out' ) + 1 ]
 	
 	if not output_dir[-1] == "/":
 		output_dir += "/"
@@ -575,7 +528,9 @@ def main( arguments ):
 				for i, intervall in enumerate( intervalls_of_interest ):
 					out.write( k + '\t' + str( y_values_of_interest[ i ] ) + '\t' + str( intervall[0] ) + '\t' + str( intervall[1] ) + '\n' )
 
-if __name__ == '__main__':
-	
+
+if '--in' in sys.argv and '--ref' in sys.argv and '--out' in sys.argv and '--pool1' in sys.argv and '--pool2' in sys.argv:
 	main( sys.argv )
+else:
+	sys.exit( __usage__ )
 	
