@@ -66,3 +66,30 @@ Usage:
 
 # 4) dAF_selected_contigs.py
 
+This script performs a delta allele frequency analysis.
+
+```
+Usage:
+  python dAF_selected_contigs.py --input_vcf <FILE> --reference_file <FILE> --output_dir <DIR> --pool1 <STR> --pool2 <STR>
+
+  --input_vcf       STR    Input VCF file
+  --reference_file  STR    Reference FASTA file
+  --output_dir      STR    Output directory
+  --pool1           STR    Samples of pool1
+  --pool2           STR    Samples of pool2
+```
+
+`--input_vcf` specifies the input VCF file.
+
+`--reference_file` specifies a FASTA file containing the reference genome sequence.
+
+`--output_dir` specifies the output directory.
+
+`--pool1` comma-separated list of samples that form pool1.
+
+`--pool2` comma-separated list of samples that form pool2.
+
+
+# References
+
+This repository.
