@@ -3,6 +3,7 @@ scripts related to analyses performed for beetresmabs
 
 # 1) VCF_combiner.py
 
+This script can combine individual VCF files into a single VCF file suitable for the following dAF analysis.
 
 ```
 Usage:
@@ -18,6 +19,8 @@ Usage:
 
 
 # 2) filter_parent_variants.py
+
+
 
 # 3) filter_VCF_by_goldstandard.py
 
