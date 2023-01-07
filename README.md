@@ -21,6 +21,7 @@ Usage:
 # 2) filter_parent_variants.py
 
 This script can generate a gold standard VCF for the filtering of a given F2 generation VCF file. This gold standard is based on two parent VCF files and a F1 VCF file. Variants need to be homozygous in the two parents and heterozygous in the F1 generation.
+Result files: P1_hom.vcf contains the homozygous variants of parent1, P2_hom.vcf contains the homozygous variants of parent2, F1_het.vcf contains the heterozygous variants in the F1, and gold_standard.vcf contains the variants supported by this analysis.
 
 ```
 Usage:
