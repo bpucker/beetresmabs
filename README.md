@@ -72,11 +72,11 @@ This script performs a delta allele frequency analysis.
 Usage:
   python dAF_selected_contigs.py --input_vcf <FILE> --reference_file <FILE> --output_dir <DIR> --pool1 <STR> --pool2 <STR>
 
-  --input_vcf       STR    Input VCF file
-  --reference_file  STR    Reference FASTA file
-  --output_dir      STR    Output directory
-  --pool1           STR    Samples of pool1
-  --pool2           STR    Samples of pool2
+  --in     STR    Input VCF file
+  --ref    STR    Reference FASTA file
+  --out    STR    Output directory
+  --pool1  STR    Samples of pool1
+  --pool2  STR    Samples of pool2
 ```
 
 `--input_vcf` specifies the input VCF file.
