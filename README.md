@@ -93,3 +93,5 @@ Usage:
 # References
 
 This repository.
+
+Schilbert H. M., Pucker B., Ries D., Viehöver P., Micic Z., Dreyer F., Beckmann K., Wittkop B., Weisshaar B., Holtgräwe D.. Mapping-by-sequencing reveals genomic regions associated with seed quality parameters in Brassica napus. Genes 2022, 13(7), 1131; https://doi.org/10.3390/genes13071131
